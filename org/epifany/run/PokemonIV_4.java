@@ -23,12 +23,12 @@ public class PokemonIV_4 {
 	 * @param args the command line arguments
 	 */
 	public static void main(String[] args){
-		PokemonApplication program = new PokemonApplication();
-		program.createUI();
+		PokemonApplication application = new PokemonApplication();
+		application.createUI();
 		PokemonGUIContainer container;
 		
 		// Left side
-		container = program.getContainer_l();
+		container = application.getContainer_l();
 		PokemonPresenter presenter_l = new PokemonPresenter( new PokemonManager(), container);
 		
 		ButtonListener bListener_l = new ButtonListener( presenter_l);
@@ -65,7 +65,7 @@ public class PokemonIV_4 {
 		
 		
 		// Right side
-		container = program.getContainer_r();
+		container = application.getContainer_r();
 		PokemonPresenter presenter_r = new PokemonPresenter( new PokemonManager(), container);
 		
 		ButtonListener bListener_r = new ButtonListener( presenter_r);
