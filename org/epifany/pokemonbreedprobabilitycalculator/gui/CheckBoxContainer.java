@@ -2,7 +2,7 @@
  * Copyright 2016, Stephen Gung, All rights reserved
  */
 
-package org.epifany.pkmnbreedprbltycalc.gui;
+package org.epifany.pokemonbreedprobabilitycalculator.gui;
 
 import java.awt.FlowLayout;
 import javax.swing.JCheckBox;
@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 /**
  * @author Stephen Gung
  */
-public class CheckBoxContainer{
+public class CheckBoxContainer {
 	protected final JCheckBox hp_checkbox;
 	protected final JCheckBox atk_checkbox;
 	protected final JCheckBox def_checkbox;

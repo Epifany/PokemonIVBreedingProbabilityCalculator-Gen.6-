@@ -2,7 +2,7 @@
  * Copyright 2016, Stephen Gung, All rights reserved
  */
 
-package org.epifany.pkmnbreedprbltycalc.gui;
+package org.epifany.pokemonbreedprobabilitycalculator.gui;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
@@ -13,12 +13,12 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import org.epifany.pkmnbreedprbltycalc.PkmnCmd;
+import org.epifany.pokemonbreedprobabilitycalculator.PokemonCommand;
 
 /**
  * @author Stephen Gung
  */
-public class PkmnGUIContainer{
+public class PokemonGUIContainer {
 	private final InputContainer input_a;
 	private final InputContainer input_b;
 	
@@ -33,7 +33,7 @@ public class PkmnGUIContainer{
 	private final RadioButtonContainer radioButtonContainer;
 	private final JLabel rbLabel;
 	
-	public PkmnGUIContainer(){
+	public PokemonGUIContainer(){
 		String[] spnrValues = { "0", "1", "2", "3",
 			"4", "5", "6", "7",
 			"8", "9", "10", "11",
@@ -43,14 +43,14 @@ public class PkmnGUIContainer{
 			"24", "25", "26", "27",
 			"28", "29", "30", "31"
 		};
-		String[] itemValues = { PkmnCmd.ITEM_OTHER_TEXT,
-			PkmnCmd.ITEM_DESTINYKNOT_TEXT,
-			PkmnCmd.ITEM_POWERWEIGHT_TEXT,
-			PkmnCmd.ITEM_POWERBRACER_TEXT,
-			PkmnCmd.ITEM_POWERBELT_TEXT,
-			PkmnCmd.ITEM_POWERLENS_TEXT,
-			PkmnCmd.ITEM_POWERBAND_TEXT,
-			PkmnCmd.ITEM_POWERANKLET_TEXT
+		String[] itemValues = { PokemonCommand.ITEM_OTHER_TEXT,
+			PokemonCommand.ITEM_DESTINYKNOT_TEXT,
+			PokemonCommand.ITEM_POWERWEIGHT_TEXT,
+			PokemonCommand.ITEM_POWERBRACER_TEXT,
+			PokemonCommand.ITEM_POWERBELT_TEXT,
+			PokemonCommand.ITEM_POWERLENS_TEXT,
+			PokemonCommand.ITEM_POWERBAND_TEXT,
+			PokemonCommand.ITEM_POWERANKLET_TEXT
 		};
 		// Initialize Pokemon A Input guis
 		input_a = new InputContainer( spnrValues, itemValues,

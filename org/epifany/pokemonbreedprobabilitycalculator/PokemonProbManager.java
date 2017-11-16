@@ -2,20 +2,20 @@
  * Copyright 2016, Stephen Gung, All rights reserved
  */
 
-package org.epifany.pkmnbreedprbltycalc;
+package org.epifany.pokemonbreedprobabilitycalculator;
 
 import java.util.HashMap;
 import org.epifany.combination.Node;
-import org.epifany.pkmnbreedprbltycalc.model.PkmnBreedManager;
-import org.epifany.pkmnbreedprbltycalc.model.PkmnSWABManager;
-import org.epifany.pkmnbreedprbltycalc.model.basic.*;
+import org.epifany.pokemonbreedprobabilitycalculator.model.PokemonBreedManager;
+import org.epifany.pokemonbreedprobabilitycalculator.model.PokemonSWABManager;
+import org.epifany.pokemonbreedprobabilitycalculator.model.basic.*;
 import org.epifany.pokemon.Pokemon;
 import org.epifany.pokemon.PokemonHelper;
 
 /**
  * @author Stephen Gung
  */
-public class PkmnProbManager{
+public class PokemonProbManager {
 	// flags for informing program which stat to be considered during probability computation
 	private boolean flag_hp;
 	private boolean flag_atk;
@@ -24,19 +24,19 @@ public class PkmnProbManager{
 	private boolean flag_spd;
 	private boolean flag_spe;
 	// The breed manager associated with the probabilities we'll be computing
-	private final PkmnBreedManager breed;
+	private final PokemonBreedManager breed;
 	// Optimization
-	private final HashMap< String, PkmnSWABManager> probabilities;
+	private final HashMap< String, PokemonSWABManager> probabilities;
 	private PkmnFractionMode mode;
 	private String currentKey;
 	
-	public PkmnProbManager( PkmnBreedManager b){
+	public PokemonProbManager( PokemonBreedManager b){
 		breed = b;
 		probabilities = new HashMap();
 	}
 	
 	// Copy Constructor method
-	public PkmnProbManager( PkmnProbManager p){
+	public PokemonProbManager( PokemonProbManager p){
 		flag_hp = p.flag_hp;
 		flag_atk = p.flag_atk;
 		flag_def = p.flag_def;
@@ -89,7 +89,7 @@ public class PkmnProbManager{
 				perfect.addNumerator( temp.getNumerator());
 				perfect.addDenominator( temp.getDenominator());
 			}
-			PkmnSWABManager manager = new PkmnSWABManager( manager_a, manager_b, manager_ab, perfect);
+			PokemonSWABManager manager = new PokemonSWABManager( manager_a, manager_b, manager_ab, perfect);
 			probabilities.put( currentKey, manager);
 		}
 		else{
@@ -123,8 +123,8 @@ public class PkmnProbManager{
 	public boolean flagSpD(){	return flag_spd;	}
 	public boolean flagSpe(){	return flag_spe;	}
 	
-	public PkmnBreedManager getBreedManager(){	return breed;	}
-	public PkmnSWABManager getSWABAt( String key){	return probabilities.get(key);	}
+	public PokemonBreedManager getBreedManager(){	return breed;	}
+	public PokemonSWABManager getSWABAt( String key){	return probabilities.get(key);	}
 	public String getCurrentKey(){	return currentKey;	}
 	
 	// Traverses through a node for computing a Pokemon Fraction

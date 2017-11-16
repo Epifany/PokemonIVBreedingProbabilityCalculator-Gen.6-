@@ -9,7 +9,7 @@ package org.epifany.pokemon;
  * 
  * @author Stephen Gung
  */
-public enum Gender{
+public enum Gender {
 	MALE,
 	FEMALE,
 	// Some Pokemon are genderless

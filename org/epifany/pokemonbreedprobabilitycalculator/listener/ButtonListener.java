@@ -2,19 +2,19 @@
  * Copyright 2016, Stephen Gung, All rights reserved
  */
 
-package org.epifany.pkmnbreedprbltycalc.listener;
+package org.epifany.pokemonbreedprobabilitycalculator.listener;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import org.epifany.pkmnbreedprbltycalc.PkmnPresenter;
+import org.epifany.pokemonbreedprobabilitycalculator.PokemonPresenter;
 
 /**
  * @author Stephen Gung
  */
-public class ButtonListener implements ActionListener{
-	private final PkmnPresenter presenter;
+public class ButtonListener implements ActionListener {
+	private final PokemonPresenter presenter;
 	
-	public ButtonListener( PkmnPresenter p){
+	public ButtonListener( PokemonPresenter p){
 		presenter = p;
 	}
 	

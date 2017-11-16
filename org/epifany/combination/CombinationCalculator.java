@@ -13,7 +13,7 @@ import java.util.ArrayList;
  * 
  * @author Stephen Gung
  */
-public class CombinationCalculator{
+public class CombinationCalculator {
 	// This is where we'll hold all our set of combinations
 	protected final ArrayList<ArrayList<Integer>> combinations;
 	// The elements used for computing combinations

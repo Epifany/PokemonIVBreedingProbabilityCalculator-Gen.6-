@@ -2,12 +2,12 @@
  * Copyright 2016, Stephen Gung, All rights reserved
  */
 
-package org.epifany.pkmnbreedprbltycalc;
+package org.epifany.pokemonbreedprobabilitycalculator;
 
 /**
  * @author Stephen Gung
  */
-public class PkmnCmd{
+public class PokemonCommand {
 	
 	public static final String HP_INC = "hpinc";
 	public static final String HP_EXC = "hpexc";

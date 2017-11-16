@@ -11,7 +11,7 @@ package org.epifany.combination;
  * 
  * @author Stephen Gung
  */
-public class Node{
+public class Node {
 	private Node parent;
 	private Node child_left;
 	private Node child_right;

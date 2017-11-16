@@ -9,7 +9,7 @@ package org.epifany.pokemon;
  * 
  * @author Stephen Gung
  */
-public enum Nature{
+public enum Nature {
 	// Natures with Attack stat increased
 	HARDY,		// Attack stat decreased
 	LONELY,		// Defense stat decreased

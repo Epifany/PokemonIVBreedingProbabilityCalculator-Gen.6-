@@ -11,7 +11,7 @@ import java.math.BigDecimal;
  * 
  * @author Stephen Gung
  */
-public final class PokemonHelper{
+public final class PokemonHelper {
 	// Some text
 	public static final String POKEMON_TEXT = "Pokemon";
 	public static final String HP_TEXT = "HP";

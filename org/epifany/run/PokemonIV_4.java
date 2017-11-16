@@ -4,13 +4,13 @@
 
 package org.epifany.run;
 
-import org.epifany.pkmnbreedprbltycalc.PkmnManager;
-import org.epifany.pkmnbreedprbltycalc.PkmnPresenter;
-import org.epifany.pkmnbreedprbltycalc.PkmnProgram;
-import org.epifany.pkmnbreedprbltycalc.gui.PkmnGUIContainer;
-import org.epifany.pkmnbreedprbltycalc.listener.ButtonListener;
-import org.epifany.pkmnbreedprbltycalc.listener.CheckBoxListener;
-import org.epifany.pkmnbreedprbltycalc.listener.RadioButtonListener;
+import org.epifany.pokemonbreedprobabilitycalculator.PokemonManager;
+import org.epifany.pokemonbreedprobabilitycalculator.PokemonPresenter;
+import org.epifany.pokemonbreedprobabilitycalculator.PokemonApplication;
+import org.epifany.pokemonbreedprobabilitycalculator.gui.PokemonGUIContainer;
+import org.epifany.pokemonbreedprobabilitycalculator.listener.ButtonListener;
+import org.epifany.pokemonbreedprobabilitycalculator.listener.CheckBoxListener;
+import org.epifany.pokemonbreedprobabilitycalculator.listener.RadioButtonListener;
 
 /**
  * This class contains the main method
@@ -23,13 +23,13 @@ public class PokemonIV_4 {
 	 * @param args the command line arguments
 	 */
 	public static void main(String[] args){
-		PkmnProgram program = new PkmnProgram();
+		PokemonApplication program = new PokemonApplication();
 		program.createUI();
-		PkmnGUIContainer container;
+		PokemonGUIContainer container;
 		
 		// Left side
 		container = program.getContainer_l();
-		PkmnPresenter presenter_l = new PkmnPresenter( new PkmnManager(), container);
+		PokemonPresenter presenter_l = new PokemonPresenter( new PokemonManager(), container);
 		
 		ButtonListener bListener_l = new ButtonListener( presenter_l);
 		container.getCalculateButton().addActionListener( bListener_l);
@@ -66,7 +66,7 @@ public class PokemonIV_4 {
 		
 		// Right side
 		container = program.getContainer_r();
-		PkmnPresenter presenter_r = new PkmnPresenter( new PkmnManager(), container);
+		PokemonPresenter presenter_r = new PokemonPresenter( new PokemonManager(), container);
 		
 		ButtonListener bListener_r = new ButtonListener( presenter_r);
 		container.getCalculateButton().addActionListener( bListener_r);

@@ -2,7 +2,7 @@
  * Copyright 2016, Stephen Gung, All rights reserved
  */
 
-package org.epifany.pkmnbreedprbltycalc.model.basic;
+package org.epifany.pokemonbreedprobabilitycalculator.model.basic;
 
 /**
  * Class for handling
@@ -13,7 +13,7 @@ package org.epifany.pkmnbreedprbltycalc.model.basic;
  * 
  * @author Stephen Gung
  */
-public class SWIEManager{
+public class SWIEManager {
 	private final Fraction strongInclusive;
 	private final Fraction strongExclusive;
 	private final Fraction weakInclusive;

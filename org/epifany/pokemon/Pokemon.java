@@ -9,7 +9,7 @@ package org.epifany.pokemon;
  * 
  * @author Stephen Gung
  */
-public class Pokemon{
+public class Pokemon {
 	// The unique identifier for the Pokemon
 	protected final int id;
 	// The name of the Pokemon

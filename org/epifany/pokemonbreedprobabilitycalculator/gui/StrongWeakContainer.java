@@ -2,7 +2,7 @@
  * Copyright 2016, Stephen Gung, All rights reserved
  */
 
-package org.epifany.pkmnbreedprbltycalc.gui;
+package org.epifany.pokemonbreedprobabilitycalculator.gui;
 
 import java.awt.Component;
 import javax.swing.JLabel;
@@ -10,7 +10,7 @@ import javax.swing.JLabel;
 /**
  * @author Stephen Gung
  */
-public class StrongWeakContainer{
+public class StrongWeakContainer {
 	private final JLabel strongInclusive_msg;
 	private final JLabel strongExclusive_msg;
 	private final JLabel weakInclusive_msg;

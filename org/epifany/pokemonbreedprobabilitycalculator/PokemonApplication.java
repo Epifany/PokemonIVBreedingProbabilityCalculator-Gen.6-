@@ -2,7 +2,7 @@
  * Copyright 2016, Stephen Gung, All rights reserved
  */
 
-package org.epifany.pkmnbreedprbltycalc;
+package org.epifany.pokemonbreedprobabilitycalculator;
 
 import java.awt.event.KeyEvent;
 import javax.swing.BoxLayout;
@@ -12,20 +12,20 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
-import org.epifany.pkmnbreedprbltycalc.gui.PkmnGUIContainer;
+import org.epifany.pokemonbreedprobabilitycalculator.gui.PokemonGUIContainer;
 
 /**
  * @author Stephen Gung
  */
-public class PkmnProgram{
+public class PokemonApplication {
 	private JFrame frame;
 	
-	private final PkmnGUIContainer container_l;
-	private final PkmnGUIContainer container_r;
+	private final PokemonGUIContainer container_l;
+	private final PokemonGUIContainer container_r;
 	
-	public PkmnProgram(){
-		container_l = new PkmnGUIContainer();
-		container_r = new PkmnGUIContainer();
+	public PokemonApplication(){
+		container_l = new PokemonGUIContainer();
+		container_r = new PokemonGUIContainer();
 	}
 	
 	public void createUI(){
@@ -59,8 +59,8 @@ public class PkmnProgram{
 			frame.setVisible( true);
 		}
 	
-	public PkmnGUIContainer getContainer_l(){	return container_l;	}
-	public PkmnGUIContainer getContainer_r(){	return container_r;	}
+	public PokemonGUIContainer getContainer_l(){	return container_l;	}
+	public PokemonGUIContainer getContainer_r(){	return container_r;	}
 	
 	// Helper method
 	public JMenu createJMenu( String text, int key){

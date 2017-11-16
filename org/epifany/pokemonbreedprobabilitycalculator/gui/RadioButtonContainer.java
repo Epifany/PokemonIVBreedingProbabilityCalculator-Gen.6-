@@ -2,7 +2,7 @@
  * Copyright 2016, Stephen Gung, All rights reserved
  */
 
-package org.epifany.pkmnbreedprbltycalc.gui;
+package org.epifany.pokemonbreedprobabilitycalculator.gui;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -10,14 +10,14 @@ import javax.swing.ButtonGroup;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
-import org.epifany.pkmnbreedprbltycalc.PkmnCmd;
+import org.epifany.pokemonbreedprobabilitycalculator.PokemonCommand;
 
 /**
  * This class is responsible for GUI output handling
  * 
  * @author Stephen Gung
  */
-public class RadioButtonContainer{
+public class RadioButtonContainer {
 	protected final JRadioButton hp_include_rb;
 	protected final JRadioButton atk_include_rb;
 	protected final JRadioButton def_include_rb;
@@ -40,24 +40,24 @@ public class RadioButtonContainer{
 	protected final JRadioButton spe_optional_rb;
 	
 	public RadioButtonContainer( String include, String exclude, String optional){
-		hp_include_rb = createJRadioButton( include, PkmnCmd.HP_INC, true);
-		atk_include_rb = createJRadioButton( include, PkmnCmd.ATK_INC, true);
-		def_include_rb = createJRadioButton( include, PkmnCmd.DEF_INC, true);
-		spa_include_rb = createJRadioButton( include, PkmnCmd.SPA_INC, true);
-		spd_include_rb = createJRadioButton( include, PkmnCmd.SPD_INC, true);
-		spe_include_rb = createJRadioButton( include, PkmnCmd.SPE_INC, true);
-		hp_exclude_rb = createJRadioButton( exclude, PkmnCmd.HP_EXC, false);
-		atk_exclude_rb = createJRadioButton( exclude, PkmnCmd.ATK_EXC, false);
-		def_exclude_rb = createJRadioButton( exclude, PkmnCmd.DEF_EXC, false);
-		spa_exclude_rb = createJRadioButton( exclude, PkmnCmd.SPA_EXC, false);
-		spd_exclude_rb = createJRadioButton( exclude, PkmnCmd.SPD_EXC, false);
-		spe_exclude_rb = createJRadioButton( exclude, PkmnCmd.SPE_EXC, false);
-		hp_optional_rb = createJRadioButton( optional, PkmnCmd.HP_OPT, false);
-		atk_optional_rb = createJRadioButton( optional, PkmnCmd.ATK_OPT, false);
-		def_optional_rb = createJRadioButton( optional, PkmnCmd.DEF_OPT, false);
-		spa_optional_rb = createJRadioButton( optional, PkmnCmd.SPA_OPT, false);
-		spd_optional_rb = createJRadioButton( optional, PkmnCmd.SPD_OPT, false);
-		spe_optional_rb = createJRadioButton( optional, PkmnCmd.SPE_OPT, false);
+		hp_include_rb = createJRadioButton( include, PokemonCommand.HP_INC, true);
+		atk_include_rb = createJRadioButton( include, PokemonCommand.ATK_INC, true);
+		def_include_rb = createJRadioButton( include, PokemonCommand.DEF_INC, true);
+		spa_include_rb = createJRadioButton( include, PokemonCommand.SPA_INC, true);
+		spd_include_rb = createJRadioButton( include, PokemonCommand.SPD_INC, true);
+		spe_include_rb = createJRadioButton( include, PokemonCommand.SPE_INC, true);
+		hp_exclude_rb = createJRadioButton( exclude, PokemonCommand.HP_EXC, false);
+		atk_exclude_rb = createJRadioButton( exclude, PokemonCommand.ATK_EXC, false);
+		def_exclude_rb = createJRadioButton( exclude, PokemonCommand.DEF_EXC, false);
+		spa_exclude_rb = createJRadioButton( exclude, PokemonCommand.SPA_EXC, false);
+		spd_exclude_rb = createJRadioButton( exclude, PokemonCommand.SPD_EXC, false);
+		spe_exclude_rb = createJRadioButton( exclude, PokemonCommand.SPE_EXC, false);
+		hp_optional_rb = createJRadioButton( optional, PokemonCommand.HP_OPT, false);
+		atk_optional_rb = createJRadioButton( optional, PokemonCommand.ATK_OPT, false);
+		def_optional_rb = createJRadioButton( optional, PokemonCommand.DEF_OPT, false);
+		spa_optional_rb = createJRadioButton( optional, PokemonCommand.SPA_OPT, false);
+		spd_optional_rb = createJRadioButton( optional, PokemonCommand.SPD_OPT, false);
+		spe_optional_rb = createJRadioButton( optional, PokemonCommand.SPE_OPT, false);
 		ButtonGroup hp_group = new ButtonGroup();
 		ButtonGroup atk_group = new ButtonGroup();
 		ButtonGroup def_group = new ButtonGroup();

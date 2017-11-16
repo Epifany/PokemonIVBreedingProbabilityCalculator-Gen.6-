@@ -2,7 +2,7 @@
  * Copyright 2016, Stephen Gung, All rights reserved
  */
 
-package org.epifany.pkmnbreedprbltycalc.model;
+package org.epifany.pokemonbreedprobabilitycalculator.model;
 
 import java.util.HashMap;
 import org.epifany.combination.Node;
@@ -14,12 +14,12 @@ import org.epifany.combination.NodeCombinationCalculator;
  * 
  * @author Stephen Gung
  */
-public class PkmnBreedManager{
+public class PokemonBreedManager {
 	// The calculator associated with this class
 	private NodeCombinationCalculator calculator;
 	private boolean changed_calculator;
 	// The Pokemon manager associated with this class
-	private PkmnABManager abManager;
+	private PokemonABManager abManager;
 	private boolean changed_manager;
 	/* This maps the (splitted) combinations to the respective IV values.
 	The IV values are obtained from either Pokemon A or Pokemon B */
@@ -38,24 +38,24 @@ public class PkmnBreedManager{
 	protected final int SPD_B_INDEX = 10;
 	protected final int SPE_B_INDEX = 11;
 	
-	public PkmnBreedManager(){
+	public PokemonBreedManager(){
 		IV_map = new HashMap();
 	}
 	
-	public PkmnBreedManager( PkmnABManager m){
-		abManager = new PkmnABManager( m);
+	public PokemonBreedManager( PokemonABManager m){
+		abManager = new PokemonABManager( m);
 		changed_manager = true;
 		IV_map = new HashMap();
 	}
 	
-	public PkmnBreedManager( NodeCombinationCalculator c){
+	public PokemonBreedManager( NodeCombinationCalculator c){
 		calculator = new NodeCombinationCalculator( c);
 		changed_calculator = true;
 		IV_map = new HashMap();
 	}
 	
-	public PkmnBreedManager( PkmnABManager m, NodeCombinationCalculator c){
-		abManager = new PkmnABManager( m);
+	public PokemonBreedManager( PokemonABManager m, NodeCombinationCalculator c){
+		abManager = new PokemonABManager( m);
 		changed_manager = true;
 		calculator = new NodeCombinationCalculator( c);
 		changed_calculator = true;
@@ -63,9 +63,9 @@ public class PkmnBreedManager{
 	}
 	
 	// Copy Constructor method
-	public PkmnBreedManager( PkmnBreedManager pbm){
+	public PokemonBreedManager( PokemonBreedManager pbm){
 		calculator = new NodeCombinationCalculator( pbm.calculator);
-		abManager = new PkmnABManager( pbm.abManager);
+		abManager = new PokemonABManager( pbm.abManager);
 		IV_map = new HashMap( pbm.IV_map);
 	}
 	
@@ -97,7 +97,7 @@ public class PkmnBreedManager{
 		changed_calculator = true;
 	}
 	
-	public void setManager( PkmnABManager m){
+	public void setManager( PokemonABManager m){
 		abManager = m;
 		changed_manager = true;
 	}
@@ -163,6 +163,6 @@ public class PkmnBreedManager{
 	}
 	
 	public NodeCombinationCalculator getCalculator(){	return calculator;	}
-	public PkmnABManager getABManager(){	return abManager;	}
+	public PokemonABManager getABManager(){	return abManager;	}
 	public int[] getIVs( Node node){	return IV_map.get(node);	}
 }

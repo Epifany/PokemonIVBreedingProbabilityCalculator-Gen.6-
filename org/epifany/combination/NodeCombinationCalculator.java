@@ -13,7 +13,7 @@ import java.util.ArrayList;
  * 
  * @author Stephen Gung
  */
-public class NodeCombinationCalculator extends CombinationCalculator{
+public class NodeCombinationCalculator extends CombinationCalculator {
 	// Our set of nodes. The ith node corresponds with the ith combination
 	protected final ArrayList<Node> nodes;
 	

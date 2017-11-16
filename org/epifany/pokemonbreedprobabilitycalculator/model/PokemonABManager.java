@@ -2,7 +2,7 @@
  * Copyright 2016, Stephen Gung, All rights reserved
  */
 
-package org.epifany.pkmnbreedprbltycalc.model;
+package org.epifany.pokemonbreedprobabilitycalculator.model;
 
 import org.epifany.pokemon.*;
 
@@ -11,7 +11,7 @@ import org.epifany.pokemon.*;
  * 
  * @author Stephen Gung
  */
-public class PkmnABManager{
+public class PokemonABManager {
 	// Represents Pokemon A
 	private final Pokemon pokemon_a;
 	// Represents Pokemon B
@@ -21,7 +21,7 @@ public class PkmnABManager{
 	// represents how many IVs are maxed in Pokemon B
 	private final int numPerfectIV_b;
 	
-	public PkmnABManager( int id_a, String name_a,
+	public PokemonABManager( int id_a, String name_a,
 						Gender gender_a, Nature nature_a,
 						int hp_a, int atk_a, int def_a, int spa_a, int spd_a, int spe_a,
 						int id_b, String name_b,
@@ -54,7 +54,7 @@ public class PkmnABManager{
 		numPerfectIV_b = num;
 	}
 	
-	public PkmnABManager( Pokemon pA, Pokemon pB){
+	public PokemonABManager( Pokemon pA, Pokemon pB){
 		// Initializing Pokemon A and Pokemon B
 		System.out.println( "Initializing Pokemon A & Pokemon B..");
 		pokemon_a = new Pokemon( pA);
@@ -82,7 +82,7 @@ public class PkmnABManager{
 	 * Copy constructor method
 	 * @param pm - The object to be copied
 	 */
-	public PkmnABManager( PkmnABManager pm){
+	public PokemonABManager( PokemonABManager pm){
 		pokemon_a = new Pokemon( pm.pokemon_a);
 		pokemon_b = new Pokemon( pm.pokemon_b);
 		numPerfectIV_a = pm.numPerfectIV_a;

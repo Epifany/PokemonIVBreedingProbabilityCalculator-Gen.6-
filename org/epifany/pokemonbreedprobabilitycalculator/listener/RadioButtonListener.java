@@ -2,20 +2,20 @@
  * Copyright 2016, Stephen Gung, All rights reserved
  */
 
-package org.epifany.pkmnbreedprbltycalc.listener;
+package org.epifany.pokemonbreedprobabilitycalculator.listener;
 
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import javax.swing.AbstractButton;
-import org.epifany.pkmnbreedprbltycalc.PkmnPresenter;
+import org.epifany.pokemonbreedprobabilitycalculator.PokemonPresenter;
 
 /**
  * @author Stephen Gung
  */
-public class CheckBoxListener implements ItemListener{
-	private final PkmnPresenter presenter;
+public class RadioButtonListener implements ItemListener {
+	private final PokemonPresenter presenter;
 	
-	public CheckBoxListener( PkmnPresenter p){
+	public RadioButtonListener( PokemonPresenter p){
 		presenter = p;
 	}
 	
@@ -25,9 +25,10 @@ public class CheckBoxListener implements ItemListener{
 		String command = button.getActionCommand();
 		boolean flag = ( ie.getStateChange() == ItemEvent.SELECTED);
 		System.out.println( command + " " + flag);
-		presenter.updateFlagState( command, flag);
-		presenter.updateFlagStateKey();
-		presenter.updateFlagStateProbability();
+		if( flag){
+			presenter.updateRBState( command, flag);
+			presenter.updateRBStateKey();
+			presenter.updateRBStateProbability();
+		}
 	}
-	
 }

@@ -2,7 +2,7 @@
  * Copyright 2016, Stephen Gung, All rights reserved
  */
 
-package org.epifany.pkmnbreedprbltycalc.gui;
+package org.epifany.pokemonbreedprobabilitycalculator.gui;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -17,7 +17,7 @@ import javax.swing.SpinnerListModel;
 /**
  * @author Stephen Gung
  */
-public class InputContainer{
+public class InputContainer {
 	private final JSpinner hp_spinner;
 	private final JSpinner atk_spinner;
 	private final JSpinner def_spinner;

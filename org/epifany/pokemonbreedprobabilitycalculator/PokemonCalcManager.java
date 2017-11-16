@@ -2,7 +2,7 @@
  * Copyright 2016, Stephen Gung, All rights reserved
  */
 
-package org.epifany.pkmnbreedprbltycalc;
+package org.epifany.pokemonbreedprobabilitycalculator;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,14 +14,14 @@ import org.epifany.combination.NodeCombinationCalculator;
  * 
  * @author Stephen Gung
  */
-public class PkmnCalcManager{
+public class PokemonCalcManager {
 	private CalcType type_a;
 	private CalcType type_b;
 	
 	private final HashMap<String, NodeCombinationCalculator> calculators;
 	private String currentKey;
 	
-	public PkmnCalcManager(){
+	public PokemonCalcManager(){
 		calculators = new HashMap();
 	}
 	

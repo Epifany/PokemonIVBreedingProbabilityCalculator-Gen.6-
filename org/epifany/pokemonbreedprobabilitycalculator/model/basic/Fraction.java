@@ -2,7 +2,7 @@
  * Copyright 2016, Stephen Gung, All rights reserved
  */
 
-package org.epifany.pkmnbreedprbltycalc.model.basic;
+package org.epifany.pokemonbreedprobabilitycalculator.model.basic;
 
 /**
  * This class represents a special type of fraction:
@@ -11,7 +11,7 @@ package org.epifany.pkmnbreedprbltycalc.model.basic;
  * 
  * @author Stephen Gung
  */
-public class Fraction{
+public class Fraction {
 	protected int numerator;
 	protected int denominator;
 	

@@ -2,33 +2,34 @@
  * Copyright 2016, Stephen Gung, All rights reserved
  */
 
-package org.epifany.pkmnbreedprbltycalc;
+package org.epifany.pokemonbreedprobabilitycalculator;
 
+import org.epifany.pokemonbreedprobabilitycalculator.model.basic.Fraction;
+import org.epifany.pokemonbreedprobabilitycalculator.model.basic.SWIEManager;
+import org.epifany.pokemonbreedprobabilitycalculator.gui.*;
 import org.epifany.combination.NodeCombinationCalculator;
 import org.epifany.pokemon.*;
-import org.epifany.pkmnbreedprbltycalc.PkmnCalcManager.CalcType;
-import org.epifany.pkmnbreedprbltycalc.gui.*;
-import org.epifany.pkmnbreedprbltycalc.model.PkmnABManager;
-import org.epifany.pkmnbreedprbltycalc.model.PkmnSWABManager;
-import org.epifany.pkmnbreedprbltycalc.model.basic.*;
+import org.epifany.pokemonbreedprobabilitycalculator.PokemonCalcManager.CalcType;
+import org.epifany.pokemonbreedprobabilitycalculator.model.PokemonABManager;
+import org.epifany.pokemonbreedprobabilitycalculator.model.PokemonSWABManager;
 
 /**
  * @author Stephen Gung
  */
-public class PkmnPresenter{
+public class PokemonPresenter {
 	private boolean started;
 	// Our model
-	private final PkmnManager manager;
+	private final PokemonManager manager;
 	// Our view
-	private final PkmnGUIContainer view;
+	private final PokemonGUIContainer view;
 	
-	public PkmnPresenter( PkmnManager m, PkmnGUIContainer v){
+	public PokemonPresenter( PokemonManager m, PokemonGUIContainer v){
 		manager = m;
 		view = v;
 	}
 	
 	public void calculate(){
-		PkmnCalcManager calcManager = manager.getCalcManager();
+		PokemonCalcManager calcManager = manager.getCalcManager();
 		// Obtain the values for A
 		InputContainer input = view.getInputContainer_A();
 		int hp_a = Integer.parseInt( input.getHPSpinner().getValue().toString());
@@ -48,22 +49,22 @@ public class PkmnPresenter{
 		int spe_b = Integer.parseInt( input.getSpeSpinner().getValue().toString());
 		String list_b = input.getItemCB().getSelectedItem().toString();
 		
-		CalcType type = list_a.equals( PkmnCmd.ITEM_DESTINYKNOT_TEXT)	? CalcType.DESTINYKNOT :
-						list_a.equals( PkmnCmd.ITEM_POWERWEIGHT_TEXT)	? CalcType.POWERHP :
-						list_a.equals( PkmnCmd.ITEM_POWERBRACER_TEXT)	? CalcType.POWERATK :
-						list_a.equals( PkmnCmd.ITEM_POWERBELT_TEXT)		? CalcType.POWERDEF :
-						list_a.equals( PkmnCmd.ITEM_POWERLENS_TEXT)		? CalcType.POWERSPA :
-						list_a.equals( PkmnCmd.ITEM_POWERBAND_TEXT)		? CalcType.POWERSPD :
-						list_a.equals( PkmnCmd.ITEM_POWERANKLET_TEXT)	? CalcType.POWERSPE : CalcType.DEFAULT;
+		CalcType type = list_a.equals( PokemonCommand.ITEM_DESTINYKNOT_TEXT)	? CalcType.DESTINYKNOT :
+						list_a.equals( PokemonCommand.ITEM_POWERWEIGHT_TEXT)	? CalcType.POWERHP :
+						list_a.equals( PokemonCommand.ITEM_POWERBRACER_TEXT)	? CalcType.POWERATK :
+						list_a.equals( PokemonCommand.ITEM_POWERBELT_TEXT)		? CalcType.POWERDEF :
+						list_a.equals( PokemonCommand.ITEM_POWERLENS_TEXT)		? CalcType.POWERSPA :
+						list_a.equals( PokemonCommand.ITEM_POWERBAND_TEXT)		? CalcType.POWERSPD :
+						list_a.equals( PokemonCommand.ITEM_POWERANKLET_TEXT)	? CalcType.POWERSPE : CalcType.DEFAULT;
 		calcManager.setCaclTypeA( type);
 		
-		type = list_b.equals( PkmnCmd.ITEM_DESTINYKNOT_TEXT)	? CalcType.DESTINYKNOT :
-				list_b.equals( PkmnCmd.ITEM_POWERWEIGHT_TEXT)	? CalcType.POWERHP :
-				list_b.equals( PkmnCmd.ITEM_POWERBRACER_TEXT)	? CalcType.POWERATK :
-				list_b.equals( PkmnCmd.ITEM_POWERBELT_TEXT)		? CalcType.POWERDEF :
-				list_b.equals( PkmnCmd.ITEM_POWERLENS_TEXT)		? CalcType.POWERSPA :
-				list_b.equals( PkmnCmd.ITEM_POWERBAND_TEXT)		? CalcType.POWERSPD :
-				list_b.equals( PkmnCmd.ITEM_POWERANKLET_TEXT)	? CalcType.POWERSPE : CalcType.DEFAULT;
+		type = list_b.equals( PokemonCommand.ITEM_DESTINYKNOT_TEXT)	? CalcType.DESTINYKNOT :
+				list_b.equals( PokemonCommand.ITEM_POWERWEIGHT_TEXT)	? CalcType.POWERHP :
+				list_b.equals( PokemonCommand.ITEM_POWERBRACER_TEXT)	? CalcType.POWERATK :
+				list_b.equals( PokemonCommand.ITEM_POWERBELT_TEXT)		? CalcType.POWERDEF :
+				list_b.equals( PokemonCommand.ITEM_POWERLENS_TEXT)		? CalcType.POWERSPA :
+				list_b.equals( PokemonCommand.ITEM_POWERBAND_TEXT)		? CalcType.POWERSPD :
+				list_b.equals( PokemonCommand.ITEM_POWERANKLET_TEXT)	? CalcType.POWERSPE : CalcType.DEFAULT;
 		calcManager.setCaclTypeB( type);
 		
 		calcManager.updateCurrentKey();
@@ -76,7 +77,7 @@ public class PkmnPresenter{
 		Pokemon pokemon_B = new Pokemon( 99, "B", Gender.FEMALE, Nature.MODEST,
 							hp_b, atk_b, def_b, spa_b, spd_b, spe_b);
 		
-		manager.getBreedManager().setManager( new PkmnABManager( pokemon_A, pokemon_B));
+		manager.getBreedManager().setManager( new PokemonABManager( pokemon_A, pokemon_B));
 		manager.getBreedManager().evaluateIVMapping();
 		started = true;
 	}
@@ -175,9 +176,9 @@ public class PkmnPresenter{
 	// Called whenever a flag state is changed, or when calculate is done
 	public void updateFlagStateProbability(){
 		if( started){
-			PkmnProbManager probManager = manager.getProbManager();
+			PokemonProbManager probManager = manager.getProbManager();
 			probManager.updateProbabilities();
-			PkmnSWABManager swab = probManager.getSWABAt( probManager.getCurrentKey());
+			PokemonSWABManager swab = probManager.getSWABAt( probManager.getCurrentKey());
 			
 			StrongWeakContainer swContainer = view.getStrongWeakA();
 			SWIEManager swie = swab.getManagerA();
@@ -221,75 +222,75 @@ public class PkmnPresenter{
 	public void updateRBState( String text, boolean flag){
 		if( flag){
 			switch (text) {
-				case PkmnCmd.HP_INC:
+				case PokemonCommand.HP_INC:
 					manager.getProbManager2().setNeedHp( true);
 					manager.getProbManager2().setFlagHp( true);
 					break;
-				case PkmnCmd.HP_OPT:
+				case PokemonCommand.HP_OPT:
 					manager.getProbManager2().setNeedHp( false);
 					manager.getProbManager2().setFlagHp( true);
 					break;
-				case PkmnCmd.HP_EXC:
+				case PokemonCommand.HP_EXC:
 					manager.getProbManager2().setNeedHp( true);
 					manager.getProbManager2().setFlagHp( false);
 					break;
-				case PkmnCmd.ATK_INC:
+				case PokemonCommand.ATK_INC:
 					manager.getProbManager2().setNeedAtk( true);
 					manager.getProbManager2().setFlagAtk( true);
 					break;
-				case PkmnCmd.ATK_OPT:
+				case PokemonCommand.ATK_OPT:
 					manager.getProbManager2().setNeedAtk( false);
 					manager.getProbManager2().setFlagAtk( true);
 					break;
-				case PkmnCmd.ATK_EXC:
+				case PokemonCommand.ATK_EXC:
 					manager.getProbManager2().setNeedAtk( true);
 					manager.getProbManager2().setFlagAtk( false);
 					break;
-				case PkmnCmd.DEF_INC:
+				case PokemonCommand.DEF_INC:
 					manager.getProbManager2().setNeedDef( true);
 					manager.getProbManager2().setFlagDef( true);
 					break;
-				case PkmnCmd.DEF_OPT:
+				case PokemonCommand.DEF_OPT:
 					manager.getProbManager2().setNeedDef( false);
 					manager.getProbManager2().setFlagDef( true);
 					break;
-				case PkmnCmd.DEF_EXC:
+				case PokemonCommand.DEF_EXC:
 					manager.getProbManager2().setNeedDef( true);
 					manager.getProbManager2().setFlagDef( false);
 					break;
-				case PkmnCmd.SPA_INC:
+				case PokemonCommand.SPA_INC:
 					manager.getProbManager2().setNeedSpA( true);
 					manager.getProbManager2().setFlagSpA( true);
 					break;
-				case PkmnCmd.SPA_OPT:
+				case PokemonCommand.SPA_OPT:
 					manager.getProbManager2().setNeedSpA( false);
 					manager.getProbManager2().setFlagSpA( true);
 					break;
-				case PkmnCmd.SPA_EXC:
+				case PokemonCommand.SPA_EXC:
 					manager.getProbManager2().setNeedSpA( true);
 					manager.getProbManager2().setFlagSpA( false);
 					break;
-				case PkmnCmd.SPD_INC:
+				case PokemonCommand.SPD_INC:
 					manager.getProbManager2().setNeedSpD( true);
 					manager.getProbManager2().setFlagSpD( true);
 					break;
-				case PkmnCmd.SPD_OPT:
+				case PokemonCommand.SPD_OPT:
 					manager.getProbManager2().setNeedSpD( false);
 					manager.getProbManager2().setFlagSpD( true);
 					break;
-				case PkmnCmd.SPD_EXC:
+				case PokemonCommand.SPD_EXC:
 					manager.getProbManager2().setNeedSpD( true);
 					manager.getProbManager2().setFlagSpD( false);
 					break;
-				case PkmnCmd.SPE_INC:
+				case PokemonCommand.SPE_INC:
 					manager.getProbManager2().setNeedSpe( true);
 					manager.getProbManager2().setFlagSpe( true);
 					break;
-				case PkmnCmd.SPE_OPT:
+				case PokemonCommand.SPE_OPT:
 					manager.getProbManager2().setNeedSpe( false);
 					manager.getProbManager2().setFlagSpe( true);
 					break;
-				case PkmnCmd.SPE_EXC:
+				case PokemonCommand.SPE_EXC:
 					manager.getProbManager2().setNeedSpe( true);
 					manager.getProbManager2().setFlagSpe( false);
 					break;
@@ -304,7 +305,7 @@ public class PkmnPresenter{
 	// Called whenever a radio button state is changed, or when calculate is done
 	public void updateRBStateProbability(){
 		if( started){
-			PkmnProbManager2 probManager2 = manager.getProbManager2();
+			PokemonProbManager2 probManager2 = manager.getProbManager2();
 			probManager2.updateProbabilities();
 			Fraction perfect = probManager2.getFractionAt( probManager2.getCurrentKey());
 			view.getRBLabel().setText( perfect.getNumerator() + " / " + perfect.getDenominator());

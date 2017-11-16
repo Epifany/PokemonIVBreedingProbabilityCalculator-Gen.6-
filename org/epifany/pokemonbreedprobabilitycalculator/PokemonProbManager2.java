@@ -2,18 +2,18 @@
  * Copyright 2016, Stephen Gung, All rights reserved
  */
 
-package org.epifany.pkmnbreedprbltycalc;
+package org.epifany.pokemonbreedprobabilitycalculator;
 
 import java.util.HashMap;
 import org.epifany.combination.Node;
-import org.epifany.pkmnbreedprbltycalc.model.PkmnBreedManager;
-import org.epifany.pkmnbreedprbltycalc.model.basic.Fraction;
+import org.epifany.pokemonbreedprobabilitycalculator.model.PokemonBreedManager;
+import org.epifany.pokemonbreedprobabilitycalculator.model.basic.Fraction;
 import org.epifany.pokemon.PokemonHelper;
 
 /**
  * @author Stephen Gung
  */
-public class PkmnProbManager2{
+public class PokemonProbManager2 {
 	private boolean flag_hp;
 	private boolean flag_atk;
 	private boolean flag_def;
@@ -27,19 +27,19 @@ public class PkmnProbManager2{
 	private boolean need_spd;
 	private boolean need_spe;
 	// The breed manager associated with the probabilities we'll be computing
-	private final PkmnBreedManager breed;
+	private final PokemonBreedManager breed;
 	// Optimization
 	private final HashMap< String, Fraction> probabilities;
 	private String currentKey;
 	
-	public PkmnProbManager2( PkmnBreedManager b){
+	public PokemonProbManager2( PokemonBreedManager b){
 		breed = b;
 		probabilities = new HashMap();
 		setDefaultFlags();
 	}
 	
 	// Copy Constructor method
-	public PkmnProbManager2( PkmnProbManager2 p){
+	public PokemonProbManager2( PokemonProbManager2 p){
 		flag_hp = p.flag_hp;
 		flag_atk = p.flag_atk;
 		flag_def = p.flag_def;
@@ -190,7 +190,7 @@ public class PkmnProbManager2{
 	public boolean needSpD(){	return need_spd;	}
 	public boolean needSpe(){	return need_spe;	}
 	
-	public PkmnBreedManager getBreedManager(){	return breed;	}
+	public PokemonBreedManager getBreedManager(){	return breed;	}
 	public Fraction getFractionAt( String key){	return probabilities.get(key);	}
 	public String getCurrentKey(){	return currentKey;	}
 
