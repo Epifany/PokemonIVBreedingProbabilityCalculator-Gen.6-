@@ -4,6 +4,7 @@ Follows the breeding mechanics for Pokemon versions:
  * Alpha Sapphire
  * X
  * Y
+
 _(For the Nintendo 3DS)_
 
  **By Stephen Gung**
