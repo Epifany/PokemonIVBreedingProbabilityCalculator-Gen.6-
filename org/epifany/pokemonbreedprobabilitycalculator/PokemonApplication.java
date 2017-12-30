@@ -30,7 +30,7 @@ public class PokemonApplication {
 	
 	public void createUI(){
 			// Creating frame
-			frame = new JFrame( "Pokemon IV Breeding Probability Calculator (Gen-VI)");
+			frame = new JFrame( "Pokemon IV Breeding Probability Calculator (Gen-VI) - https://epifany.github.io");
 			frame.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE);
 			frame.setResizable( false);
 
