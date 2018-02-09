@@ -54,8 +54,7 @@ public class PokemonCalcManager {
 			for( int i = 0; i < calculator.size(); i++){
 				ArrayList<Integer> combination = calculator.get(i);
 				if( combination.contains( priority_a) && combination.contains( priority_b)){
-					calculator.remove(i);
-					i--;
+					calculator.remove(i--);
 				}
 				else if( combination.contains( priority_a)){
 					calculator.appendElement( calculator.getNode(i), priority_b);
@@ -67,32 +66,24 @@ public class PokemonCalcManager {
 					calculator.appendElement( calculator.getNode(i), priority_a, priority_b);
 				}
 			}
-		}
-		// Power item held by second Pokemon
-		else if( currentKey.matches("d[0-5]")
-		|| currentKey.matches("n[0-5]")){
-			int priority = Character.getNumericValue( currentKey.charAt(1)) + 6;
-			int[] indices_priority = new int[indices.length-1];
-			int count = 0;
-			// Copy all elements except for the master element
-			for( int i = 0; i < indices.length; i++){
-				if( i != priority){
-					indices_priority[count++] = i;
-				}
-			}
-			// Is first Pokemon holding Destiny Knot or No Item?
-			numElements = (currentKey.charAt(0) == 'd') ? 4 : 2;
-			// New calculator, with gauranteed element associated with the Power Item
-			calculator = new NodeCombinationCalculator( indices_priority, numElements);
-			calculator.splitNodes( split_a, split_b);
-			for( int i = 0; i < calculator.size(); i++){
-				calculator.appendElement( calculator.getNode(i), priority);
-			}
-		}
-		// Power item held by first Pokemon
+		}	
+		// Power item held by first Pokemon or held by second Pokemon
 		else if( currentKey.matches("[0-5]d")
-		|| currentKey.matches("[0-5]n")){
-			int priority = Character.getNumericValue( currentKey.charAt(0));
+		|| currentKey.matches("[0-5]n")
+		|| currentKey.matches("d[0-5]")
+		|| currentKey.matches("n[0-5]")){
+			int priority;
+			// Was Power item held by first Pokemon?
+			if( currentKey.matches("[0-5]d") || currentKey.matches("[0-5]n")){
+				priority = Character.getNumericValue( currentKey.charAt(0));
+				// Is second Pokemon holding Destiny Knot or No Item?
+				numElements = (currentKey.charAt(1) == 'd') ? 4 : 2;
+			}
+			else{
+				priority = Character.getNumericValue( currentKey.charAt(1)) + 6;
+				// Is first Pokemon holding Destiny Knot or No Item?
+				numElements = (currentKey.charAt(0) == 'd') ? 4 : 2;
+			}
 			int[] indices_priority = new int[indices.length-1];
 			int count = 0;
 			// Copy all elements except for the master element
@@ -101,8 +92,6 @@ public class PokemonCalcManager {
 					indices_priority[count++] = i;
 				}
 			}
-			// Is second Pokemon holding Destiny Knot or No Item?
-			numElements = (currentKey.charAt(1) == 'd') ? 4 : 2;
 			// New calculator, with gauranteed element associated with the Power Item
 			calculator = new NodeCombinationCalculator( indices_priority, numElements);
 			calculator.splitNodes( split_a, split_b);
@@ -121,7 +110,6 @@ public class PokemonCalcManager {
 			calculator = new NodeCombinationCalculator( indices, 3);
 			calculator.splitNodes( split_a, split_b);
 		}
-		
 		return calculator;
 	}
 	
@@ -144,11 +132,21 @@ public class PokemonCalcManager {
 		currentKey = a + b;
 	}
 	
-	public void setCaclTypeA( CalcType type){ type_a = type;	}
-	public void setCaclTypeB( CalcType type){ type_b = type;	}
+	public void setCaclTypeA( CalcType type){
+		type_a = type;
+	}
 	
-	public NodeCombinationCalculator getCalculatorAt( String key){	return calculators.get(key);	}
-	public String getCurrentKey(){	return currentKey;	}
+	public void setCaclTypeB( CalcType type){
+		type_b = type;
+	}
+	
+	public NodeCombinationCalculator getCalculatorAt( String key){
+		return calculators.get(key);
+	}
+	
+	public String getCurrentKey(){
+		return currentKey;
+	}
 	
 	public enum CalcType{
 		DEFAULT,
@@ -160,4 +158,51 @@ public class PokemonCalcManager {
 		POWERSPD,
 		POWERSPE
 	}
+	
+		/*
+		// Power item held by second Pokemon
+		else if( currentKey.matches("d[0-5]")
+		|| currentKey.matches("n[0-5]")){
+			int priority = Character.getNumericValue( currentKey.charAt(1)) + 6;
+			// Is first Pokemon holding Destiny Knot or No Item?
+			numElements = (currentKey.charAt(0) == 'd') ? 4 : 2;
+	
+			int[] indices_priority = new int[indices.length-1];
+			int count = 0;
+			// Copy all elements except for the master element
+			for( int i = 0; i < indices.length; i++){
+				if( i != priority){
+					indices_priority[count++] = i;
+				}
+			}
+			// New calculator, with gauranteed element associated with the Power Item
+			calculator = new NodeCombinationCalculator( indices_priority, numElements);
+			calculator.splitNodes( split_a, split_b);
+			for( int i = 0; i < calculator.size(); i++){
+				calculator.appendElement( calculator.getNode(i), priority);
+			}
+		}
+		// Power item held by first Pokemon
+		else if( currentKey.matches("[0-5]d")
+		|| currentKey.matches("[0-5]n")){
+			int priority = Character.getNumericValue( currentKey.charAt(0));
+			// Is second Pokemon holding Destiny Knot or No Item?
+			numElements = (currentKey.charAt(1) == 'd') ? 4 : 2;
+	
+			int[] indices_priority = new int[indices.length-1];
+			int count = 0;
+			// Copy all elements except for the master element
+			for( int i = 0; i < indices.length; i++){
+				if( i != priority){
+					indices_priority[count++] = i;
+				}
+			}
+			// New calculator, with gauranteed element associated with the Power Item
+			calculator = new NodeCombinationCalculator( indices_priority, numElements);
+			calculator.splitNodes( split_a, split_b);
+			for( int i = 0; i < calculator.size(); i++){
+				calculator.appendElement( calculator.getNode(i), priority);
+			}
+		}
+		*/
 }

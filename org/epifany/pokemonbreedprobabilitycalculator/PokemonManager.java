@@ -24,8 +24,19 @@ public class PokemonManager {
 		calcManager = new PokemonCalcManager();
 	}
 	
-	public PokemonBreedManager getBreedManager(){	return breedManager;	}
-	public PokemonProbManager getProbManager(){	return probManager;	}
-	public PokemonProbManager2 getProbManager2(){	return probManager2;	}
-	public PokemonCalcManager getCalcManager(){	return calcManager;	}
+	public PokemonBreedManager getBreedManager(){
+		return breedManager;
+	}
+	
+	public PokemonProbManager getProbManager(){
+		return probManager;
+	}
+	
+	public PokemonProbManager2 getProbManager2(){
+		return probManager2;
+	}
+	
+	public PokemonCalcManager getCalcManager(){
+		return calcManager;
+	}
 }

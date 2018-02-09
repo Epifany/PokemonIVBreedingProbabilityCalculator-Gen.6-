@@ -90,7 +90,7 @@ public class PokemonProbManager2 {
 		}*/
 	}
 	
-	// Traverses thhrough a node for computing a Pokemon Fraction
+	// Traverses through a node for computing a Pokemon Fraction
 	private Fraction calcFraction( Node target){
 		Fraction result;
 		if( target.isLeaf()){
@@ -138,7 +138,9 @@ public class PokemonProbManager2 {
 		return new Fraction( num, den);
 	}
 	
-	public void clearProbabilities(){	probabilities.clear();	}
+	public void clearProbabilities(){
+		probabilities.clear();
+	}
 	
 	public void updateCurrentKey(){
 		String hp = (need_hp == true && flag_hp == true) ? "i" :
@@ -162,36 +164,93 @@ public class PokemonProbManager2 {
 		currentKey = hp + atk + def + spa + spd + spe;
 	}
 	
-	public void setFlagHp( boolean flag){	flag_hp = flag;	}
-	public void setFlagAtk( boolean flag){	flag_atk = flag;	}
-	public void setFlagDef( boolean flag){	flag_def = flag;	}
-	public void setFlagSpA( boolean flag){	flag_spa = flag;	}
-	public void setFlagSpD( boolean flag){	flag_spd = flag;	}
-	public void setFlagSpe( boolean flag){	flag_spe = flag;	}
+	public void setFlagHp( boolean flag){
+		flag_hp = flag;
+	}
+	public void setFlagAtk( boolean flag){
+		flag_atk = flag;
+	}
+	public void setFlagDef( boolean flag){
+		flag_def = flag;
+	}
+	public void setFlagSpA( boolean flag){
+		flag_spa = flag;
+	}
+	public void setFlagSpD( boolean flag){
+		flag_spd = flag;
+	}
+	public void setFlagSpe( boolean flag){
+		flag_spe = flag;
+	}
 	
-	public void setNeedHp( boolean flag){	need_hp = flag;	}
-	public void setNeedAtk( boolean flag){	need_atk = flag;	}
-	public void setNeedDef( boolean flag){	need_def = flag;	}
-	public void setNeedSpA( boolean flag){	need_spa = flag;	}
-	public void setNeedSpD( boolean flag){	need_spd = flag;	}
-	public void setNeedSpe( boolean flag){	need_spe = flag;	}
 	
-	public boolean flagHp(){	return flag_hp;	}
-	public boolean flagAtk(){	return flag_atk;	}
-	public boolean flagDef(){	return flag_def;	}
-	public boolean flagSpA(){	return flag_spa;	}
-	public boolean flagSpD(){	return flag_spd;	}
-	public boolean flagSpe(){	return flag_spe;	}
+	public void setNeedHp( boolean flag){
+		need_hp = flag;
+	}
+	public void setNeedAtk( boolean flag){
+		need_atk = flag;
+	}
+	public void setNeedDef( boolean flag){
+		need_def = flag;
+	}
+	public void setNeedSpA( boolean flag){
+		need_spa = flag;
+	}
+	public void setNeedSpD( boolean flag){
+		need_spd = flag;
+	}
+	public void setNeedSpe( boolean flag){
+		need_spe = flag;
+	}
 	
-	public boolean needHp(){	return need_hp;	}
-	public boolean needAtk(){	return need_atk;	}
-	public boolean needDef(){	return need_def;	}
-	public boolean needSpA(){	return need_spa;	}
-	public boolean needSpD(){	return need_spd;	}
-	public boolean needSpe(){	return need_spe;	}
+	public boolean flagHp(){
+		return flag_hp;
+	}
+	public boolean flagAtk(){
+		return flag_atk;
+	}
+	public boolean flagDef(){
+		return flag_def;
+	}
+	public boolean flagSpA(){
+		return flag_spa;
+	}
+	public boolean flagSpD(){
+		return flag_spd;
+	}
+	public boolean flagSpe(){
+		return flag_spe;
+	}
 	
-	public PokemonBreedManager getBreedManager(){	return breed;	}
-	public Fraction getFractionAt( String key){	return probabilities.get(key);	}
-	public String getCurrentKey(){	return currentKey;	}
+	public boolean needHp(){
+		return need_hp;
+	}
+	public boolean needAtk(){
+		return need_atk;
+	}
+	public boolean needDef(){
+		return need_def;
+	}
+	public boolean needSpA(){
+		return need_spa;
+	}
+	public boolean needSpD(){
+		return need_spd;
+	}
+	public boolean needSpe(){
+		return need_spe;
+	}
+	
+	public PokemonBreedManager getBreedManager(){
+		return breed;
+	}
+	
+	public Fraction getFractionAt( String key){
+		return probabilities.get(key);
+	}
+	
+	public String getCurrentKey(){
+		return currentKey;
+	}
 
 }

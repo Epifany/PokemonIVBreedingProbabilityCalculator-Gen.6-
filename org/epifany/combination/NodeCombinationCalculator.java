@@ -25,9 +25,7 @@ public class NodeCombinationCalculator extends CombinationCalculator {
 	public NodeCombinationCalculator( int elmts, int lim){
 		super( elmts, lim);
 		nodes = new ArrayList( combinations.size());
-		for( int i = 0; i < combinations.size(); i++){
-			// Copy elements
-			ArrayList<Integer> combination = combinations.get(i);
+		for( ArrayList<Integer> combination : combinations){
 			int[] temp = new int[ combination.size()];
 			for( int j = 0; j < temp.length; j++){
 				temp[j] = combination.get(j);
@@ -44,9 +42,7 @@ public class NodeCombinationCalculator extends CombinationCalculator {
 	public NodeCombinationCalculator( int[] elmts, int lim){
 		super( elmts, lim);
 		nodes = new ArrayList( combinations.size());
-		for( int i = 0; i < combinations.size(); i++){
-			// Copy elements
-			ArrayList<Integer> combination = combinations.get(i);
+		for( ArrayList<Integer> combination : combinations) {
 			int[] temp = new int[ combination.size()];
 			for( int j = 0; j < temp.length; j++){
 				temp[j] = combination.get(j);
@@ -79,8 +75,8 @@ public class NodeCombinationCalculator extends CombinationCalculator {
 	
 	public boolean splitNodes( int e1, int e2){
 		boolean split = false;
-		for( int i = 0; i < nodes.size(); i++){
-			if( splitNode( nodes.get(i), e1, e2)){
+		for( Node node : nodes) {
+			if (splitNode(node, e1, e2)) {
 				split = true;
 			}
 		}
@@ -103,6 +99,9 @@ public class NodeCombinationCalculator extends CombinationCalculator {
 				if( elements_target[i] == e2 && index2 == -1 && elements_target[i] != e1){
 					index2 = i;
 				}
+				// if( elements_target[i] == e2 && index2 == -1 && index1 != -1){
+				//	index2 = i
+				// }
 				// If we found an occurrence to split
 				if( index1 != -1 && index2 != -1){
 					split = true;
@@ -116,8 +115,7 @@ public class NodeCombinationCalculator extends CombinationCalculator {
 				// Copy each stat
 				for( int n = 0; n < elements_target.length; n++){
 					if( n != index1 && n != index2){
-						elements_child[count] = elements_target[n];
-						count++;
+						elements_child[count++] = elements_target[n];
 					}
 				}
 				// Create child nodes. Head of the list contain the split value
@@ -168,7 +166,9 @@ public class NodeCombinationCalculator extends CombinationCalculator {
 	}
 	
 	// Returns the node associated with the ith combination
-	public Node getNode( int index){	return nodes.get(index);	}
+	public Node getNode( int index){
+		return nodes.get(index);
+	}
 	
 	@Override
 	public ArrayList<Integer> remove( int index){
