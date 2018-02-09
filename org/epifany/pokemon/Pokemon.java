@@ -96,7 +96,9 @@ public class Pokemon {
 		sum_ev = 0;
 	}
 	
-	public void setName( String str){	name = str;	}
+	public void setName( String str){
+		name = str;
+	}
 	
 	public boolean addHP_EV( int ev){
 		int num = addEV( hp_ev, ev);
@@ -192,29 +194,98 @@ public class Pokemon {
 		}
 	}
 	
-	public void setHP_EV( int ev){	hp_ev = ev;	}
-	public void setAtk_EV( int ev){	atk_ev = ev;	}
-	public void setDef_EV( int ev){	def_ev = ev;	}
-	public void setSpA_EV( int ev){	spa_ev = ev;	}
-	public void setSpD_EV( int ev){	spd_ev = ev;	}
-	public void setSpe_EV( int ev){	spe_ev = ev;	}
+	public void setHP_EV( int ev){
+		hp_ev = ev;
+	}
 	
-	public int getID()		{	return id;		}
-	public String getName(){	return name;	}
-	public Gender getGender(){	return gender;	}
-	public Nature getNature(){	return nature;	}
-	public int getHP_IV()	{	return hp_iv;	}
-	public int getAtk_IV()	{	return atk_iv;	}
-	public int getDef_IV()	{	return def_iv;	}
-	public int getSpA_IV()	{	return spa_iv;	}
-	public int getSpD_IV()	{	return spd_iv;	}
-	public int getSpe_IV()	{	return spe_iv;	}
-	public int getHP_EV()	{	return hp_ev;	}
-	public int getAtk_EV()	{	return atk_ev;	}
-	public int getDef_EV()	{	return def_ev;	}
-	public int getSpA_EV()	{	return spa_ev;	}
-	public int getSpD_EV()	{	return spd_ev;	}
-	public int getSpe_EV()	{	return spe_ev;	}
-	public int getSumEVs()	{	return sum_ev;	}
-	public boolean hasMaxedEVs(){	return ( sum_ev >= PokemonHelper.SUM_EV_LIMIT);	}
+	public void setAtk_EV( int ev){
+		atk_ev = ev;
+	}
+	
+	public void setDef_EV( int ev){
+		def_ev = ev;
+	}
+	
+	public void setSpA_EV( int ev){
+		spa_ev = ev;
+	}
+	
+	public void setSpD_EV( int ev){
+		spd_ev = ev;
+	}
+	
+	public void setSpe_EV( int ev){
+		spe_ev = ev;
+	}
+	
+	public int getID(){
+		return id;
+	}
+	
+	public String getName(){
+		return name;
+	}
+	
+	public Gender getGender(){
+		return gender;
+	}
+	
+	public Nature getNature(){
+		return nature;
+	}
+	
+	public int getHP_IV(){
+		return hp_iv;
+	}
+	
+	public int getAtk_IV(){
+		return atk_iv;
+	}
+	
+	public int getDef_IV(){
+		return def_iv;
+	}
+	
+	public int getSpA_IV(){
+		return spa_iv;
+	}
+	
+	public int getSpD_IV(){
+		return spd_iv;
+	}
+	
+	public int getSpe_IV(){
+		return spe_iv;
+	}
+	
+	public int getHP_EV(){
+		return hp_ev;
+	}
+	
+	public int getAtk_EV(){
+		return atk_ev;
+	}
+	
+	public int getDef_EV(){
+		return def_ev;	}
+	
+	public int getSpA_EV(){
+		return spa_ev;
+	}
+	
+	public int getSpD_EV(){
+		return spd_ev;
+	}
+	
+	public int getSpe_EV(){
+		return spe_ev;
+	}
+	
+	public int getSumEVs(){
+		return sum_ev;
+	}
+	
+	public boolean hasMaxedEVs(){
+		return (sum_ev >= PokemonHelper.SUM_EV_LIMIT);
+	}
 }

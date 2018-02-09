@@ -300,7 +300,9 @@ public class PokemonPresenter {
 		}
 	}
 
-	public void updateRBStateKey(){	manager.getProbManager2().updateCurrentKey();	}
+	public void updateRBStateKey(){
+		manager.getProbManager2().updateCurrentKey();
+	}
 	
 	// Called whenever a radio button state is changed, or when calculate is done
 	public void updateRBStateProbability(){

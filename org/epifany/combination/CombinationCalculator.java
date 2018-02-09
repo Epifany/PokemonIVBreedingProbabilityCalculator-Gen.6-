@@ -61,13 +61,13 @@ public class CombinationCalculator {
 	
 	/**
 	 * Copy constructor method
-	 * @param cm - The CombinationCalculator object to be copied
+	 * @param cc - The CombinationCalculator object to be copied
 	 */
-	public CombinationCalculator( CombinationCalculator cm){
-		combinations = new ArrayList( cm.combinations);
-		elements = new int[ cm.elements.length];
-		System.arraycopy(cm.elements, 0, elements, 0, elements.length);
-		limit = cm.limit;
+	public CombinationCalculator( CombinationCalculator cc){
+		combinations = new ArrayList( cc.combinations);
+		elements = new int[ cc.elements.length];
+		System.arraycopy(cc.elements, 0, elements, 0, elements.length);
+		limit = cc.limit;
 	}
 	
 	/**
@@ -105,8 +105,8 @@ public class CombinationCalculator {
 	 * @return true if list is found, false otherwise
 	 */
 	public boolean contains( ArrayList<Integer> list){
-		for( int i = 0; i < combinations.size(); i++){
-			if( combinations.get(i).equals( list)){
+		for( ArrayList<Integer> combination : combinations){
+			if( combination.equals( list)){
 				return true;
 			}
 		}
