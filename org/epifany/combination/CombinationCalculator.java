@@ -79,23 +79,22 @@ public class CombinationCalculator {
 		// If we've reached the maximum amount of elements permitted for a combination
 		if( potential.size() >= limit){
 			// Add to our collection of combinations
-			combinations.add( potential);
+			combinations.add( new ArrayList(potential));
 			return;
 		}
 		// Return if empy bucket or if further computations won't complete a set
-		if( bucket.isEmpty()
-		|| ((potential.size() + bucket.size()) < limit)){
+		if( bucket.isEmpty() || ((potential.size() + bucket.size()) < limit)){
 			return;
 		}
 		// Create a local copy
 		ArrayList<Integer> bucket_local = new ArrayList( bucket);
 		while( !bucket_local.isEmpty()){
-			// Create a local copy
-			ArrayList<Integer> potential_local = new ArrayList( potential);
 			// Extract first element
-			potential_local.add( bucket_local.remove(0));
+			potential.add(bucket_local.remove(0));
 			// Recursively compute
-			combination( potential_local, bucket_local);
+			combination( potential, bucket_local);
+			// Remove the extract element for next iteration
+			potential.remove(potential.size()-1);
 		}
 	}
 	
