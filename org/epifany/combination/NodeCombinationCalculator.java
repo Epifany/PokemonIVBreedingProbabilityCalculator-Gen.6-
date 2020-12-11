@@ -5,6 +5,8 @@
 package org.epifany.combination;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
 
 /**
  * This class is an extension of CombinationCalculator.
@@ -25,9 +27,7 @@ public class NodeCombinationCalculator extends CombinationCalculator {
 	public NodeCombinationCalculator( int elmts, int lim){
 		super( elmts, lim);
 		nodes = new ArrayList( combinations.size());
-		for( int i = 0; i < combinations.size(); i++){
-			// Copy elements
-			ArrayList<Integer> combination = combinations.get(i);
+		for( ArrayList<Integer> combination : combinations){
 			int[] temp = new int[ combination.size()];
 			for( int j = 0; j < temp.length; j++){
 				temp[j] = combination.get(j);
@@ -44,9 +44,7 @@ public class NodeCombinationCalculator extends CombinationCalculator {
 	public NodeCombinationCalculator( int[] elmts, int lim){
 		super( elmts, lim);
 		nodes = new ArrayList( combinations.size());
-		for( int i = 0; i < combinations.size(); i++){
-			// Copy elements
-			ArrayList<Integer> combination = combinations.get(i);
+		for( ArrayList<Integer> combination : combinations) {
 			int[] temp = new int[ combination.size()];
 			for( int j = 0; j < temp.length; j++){
 				temp[j] = combination.get(j);
@@ -64,75 +62,67 @@ public class NodeCombinationCalculator extends CombinationCalculator {
 		nodes = new ArrayList( ncc.nodes);
 	}
 	
-	public boolean splitNodes( int[] e1, int[] e2){
-		if( e1.length != e2.length){
+	public boolean splitNodes( int[] split1, int[] split2){
+		if( split1.length != split2.length)
 			return false;
+		boolean splitNodes = false;
+		
+		LinkedList<Node> queue = new LinkedList();
+		for( Node node : nodes){
+			queue.add( node);
 		}
-		boolean split = false;
-		for( int i = 0; i < e1.length; i++){
-			if( splitNodes( e1[i], e2[i])){
-				split = true;
-			}
-		}
-		return split;
-	}
-	
-	public boolean splitNodes( int e1, int e2){
-		boolean split = false;
-		for( int i = 0; i < nodes.size(); i++){
-			if( splitNode( nodes.get(i), e1, e2)){
-				split = true;
-			}
-		}
-		return split;
-	}
-
-	private boolean splitNode( Node target, int e1, int e2){
-		if( target.isLeaf()){
-			int[] elements_target = target.getElements();
-			int index1 = -1;
-			int index2 = -1;
-			boolean split = false;
-			for( int i = 0; i < elements_target.length; i++){
-				// If we found the first occurrence of the target value
-				if( elements_target[i] == e1 && index1 == -1){
-					index1 = i;
+		// At this point we know all the nodes are leaf nodes
+		while( !queue.isEmpty()){
+			Node target = queue.pop();
+			for( int i = 0; i < split1.length; i++){
+				int s1 = split1[i];
+				int s2 = split2[i];
+				int[] elements_target = target.getElements();
+				int index1 = -1;
+				int index2 = -1;
+				boolean split_target = false;
+				for( int t = 0; t < elements_target.length; t++){
+					// If we found the first occurrence of the target value
+					if( elements_target[t] == s1 && index1 == -1){
+						index1 = t;
+					}
+					// If we found the first occurrence of the target value
+					// And this target value is of a different target
+					if( elements_target[t] == s2 && index2 == -1 && elements_target[t] != s1){
+						index2 = t;
+					}
+					// if( elements_target[i] == e2 && index2 == -1 && index1 != -1){
+					//	index2 = i
+					// }
+					// If we found an occurrence to split
+					if( index1 != -1 && index2 != -1){
+						split_target = true;
+						splitNodes = true;
+						break;
+					}
 				}
-				// If we found the first occurrence of the target value
-				// And this target value is of a different target
-				if( elements_target[i] == e2 && index2 == -1 && elements_target[i] != e1){
-					index2 = i;
-				}
-				// If we found an occurrence to split
-				if( index1 != -1 && index2 != -1){
-					split = true;
+				if( split_target){
+					// We want to split them into left and right nodes
+					int[] elements_child = new int[ elements_target.length - 1];
+					int count = 1;
+					// Copy each stat
+					for( int n = 0; n < elements_target.length; n++){
+						if( n != index1 && n != index2){
+							elements_child[count++] = elements_target[n];
+						}
+					}
+					// Create child nodes. Head of the list contain the split value
+					elements_child[0] = elements_target[index1];
+					target.setLeftChild( new Node( target, elements_child));
+					queue.add(target.getLeftChild());
+					elements_child[0] = elements_target[index2];
+					target.setRightChild( new Node( target, elements_child));
+					queue.add(target.getRightChild());
 					break;
 				}
 			}
-			if( split){
-				// We want to split them into left and right nodes
-				int[] elements_child = new int[ elements_target.length - 1];
-				int count = 1;
-				// Copy each stat
-				for( int n = 0; n < elements_target.length; n++){
-					if( n != index1 && n != index2){
-						elements_child[count] = elements_target[n];
-						count++;
-					}
-				}
-				// Create child nodes. Head of the list contain the split value
-				elements_child[0] = elements_target[index1];
-				target.setLeftChild( new Node( target, elements_child));
-				elements_child[0] = elements_target[index2];
-				target.setRightChild( new Node( target, elements_child));
-			}
-			return split;
 		}
-		else{
-			boolean left = splitNode( target.getLeftChild(), e1, e2);
-			boolean right = splitNode( target.getRightChild(), e1, e2);
-			return (left || right);
-		}
+		return splitNodes;
 	}
 	
 	public void appendElement( Node target, int e1, int e2){
@@ -168,7 +158,9 @@ public class NodeCombinationCalculator extends CombinationCalculator {
 	}
 	
 	// Returns the node associated with the ith combination
-	public Node getNode( int index){	return nodes.get(index);	}
+	public Node getNode( int index){
+		return nodes.get(index);
+	}
 	
 	@Override
 	public ArrayList<Integer> remove( int index){
@@ -176,27 +168,7 @@ public class NodeCombinationCalculator extends CombinationCalculator {
 		return super.remove(index);
 	}
 	
-	/*
-	public void printNodes(){
-		for( int i = 0; i < nodes.size(); i++){
-			printNode( nodes.get(i));
-			System.out.println("");
-		}
-	}
-	
-	private void printNode( Node target){
-		if( target.isLeaf()){
-			System.out.print( Arrays.toString( target.getElements()));
-		}
-		else{
-			System.out.print( "( ");
-			printNode( target.getLeftChild());
-			System.out.print( ", ");
-			printNode( target.getRightChild());
-			System.out.print( " )");
-		}
-	}
-	
+	/*	
 	// Expand a combination
 	private Node createNode( Node parent, int[] e){
 		Node node = new Node( parent, e);
@@ -238,5 +210,98 @@ public class NodeCombinationCalculator extends CombinationCalculator {
 		}
 		return false;
 	}
+	
+	public boolean splitNodes( int[] e1, int[] e2){
+		if( e1.length != e2.length){
+			return false;
+		}
+		boolean split = false;
+		for( int i = 0; i < e1.length; i++){
+			if( splitNodes( e1[i], e2[i])){
+				split = true;
+			}
+		}
+		return split;
+	}
+	
+	public boolean splitNodes( int e1, int e2){
+		boolean split = false;
+		for( Node node : nodes) {
+			if (splitNode(node, e1, e2)) {
+				split = true;
+			}
+		}
+		return split;
+	}
+
+	private boolean splitNode( Node target, int e1, int e2){
+		if( target.isLeaf()){
+			int[] elements_target = target.getElements();
+			int index1 = -1;
+			int index2 = -1;
+			boolean split = false;
+			for( int i = 0; i < elements_target.length; i++){
+				// If we found the first occurrence of the target value
+				if( elements_target[i] == e1 && index1 == -1){
+					index1 = i;
+				}
+				// If we found the first occurrence of the target value
+				// And this target value is of a different target
+				if( elements_target[i] == e2 && index2 == -1 && elements_target[i] != e1){
+					index2 = i;
+				}
+				// if( elements_target[i] == e2 && index2 == -1 && index1 != -1){
+				//	index2 = i
+				// }
+				// If we found an occurrence to split
+				if( index1 != -1 && index2 != -1){
+					split = true;
+					break;
+				}
+			}
+			if( split){
+				// We want to split them into left and right nodes
+				int[] elements_child = new int[ elements_target.length - 1];
+				int count = 1;
+				// Copy each stat
+				for( int n = 0; n < elements_target.length; n++){
+					if( n != index1 && n != index2){
+						elements_child[count++] = elements_target[n];
+					}
+				}
+				// Create child nodes. Head of the list contain the split value
+				elements_child[0] = elements_target[index1];
+				target.setLeftChild( new Node( target, elements_child));
+				elements_child[0] = elements_target[index2];
+				target.setRightChild( new Node( target, elements_child));
+			}
+			return split;
+		}
+		else{
+			boolean left = splitNode( target.getLeftChild(), e1, e2);
+			boolean right = splitNode( target.getRightChild(), e1, e2);
+			return (left || right);
+		}
+	}
 	*/
+	
+	public void debug(){
+		for (Node node : nodes) {
+			printNode(node);
+			System.out.println("");
+		}
+	}
+	
+	private void printNode( Node target){
+		if( target.isLeaf()){
+			System.out.print( Arrays.toString( target.getElements()));
+		}
+		else{
+			System.out.print( "( ");
+			printNode( target.getLeftChild());
+			System.out.print( ", ");
+			printNode( target.getRightChild());
+			System.out.print( " )");
+		}
+	}
 }

@@ -61,13 +61,13 @@ public class CombinationCalculator {
 	
 	/**
 	 * Copy constructor method
-	 * @param cm - The CombinationCalculator object to be copied
+	 * @param cc - The CombinationCalculator object to be copied
 	 */
-	public CombinationCalculator( CombinationCalculator cm){
-		combinations = new ArrayList( cm.combinations);
-		elements = new int[ cm.elements.length];
-		System.arraycopy(cm.elements, 0, elements, 0, elements.length);
-		limit = cm.limit;
+	public CombinationCalculator( CombinationCalculator cc){
+		combinations = new ArrayList( cc.combinations);
+		elements = new int[ cc.elements.length];
+		System.arraycopy(cc.elements, 0, elements, 0, elements.length);
+		limit = cc.limit;
 	}
 	
 	/**
@@ -79,23 +79,22 @@ public class CombinationCalculator {
 		// If we've reached the maximum amount of elements permitted for a combination
 		if( potential.size() >= limit){
 			// Add to our collection of combinations
-			combinations.add( potential);
+			combinations.add( new ArrayList(potential));
 			return;
 		}
 		// Return if empy bucket or if further computations won't complete a set
-		if( bucket.isEmpty()
-		|| ((potential.size() + bucket.size()) < limit)){
+		if( bucket.isEmpty() || ((potential.size() + bucket.size()) < limit)){
 			return;
 		}
 		// Create a local copy
 		ArrayList<Integer> bucket_local = new ArrayList( bucket);
 		while( !bucket_local.isEmpty()){
-			// Create a local copy
-			ArrayList<Integer> potential_local = new ArrayList( potential);
 			// Extract first element
-			potential_local.add( bucket_local.remove(0));
+			potential.add(bucket_local.remove(0));
 			// Recursively compute
-			combination( potential_local, bucket_local);
+			combination( potential, bucket_local);
+			// Remove the extract element for next iteration
+			potential.remove(potential.size()-1);
 		}
 	}
 	
@@ -105,8 +104,8 @@ public class CombinationCalculator {
 	 * @return true if list is found, false otherwise
 	 */
 	public boolean contains( ArrayList<Integer> list){
-		for( int i = 0; i < combinations.size(); i++){
-			if( combinations.get(i).equals( list)){
+		for( ArrayList<Integer> combination : combinations){
+			if( combination.equals( list)){
 				return true;
 			}
 		}

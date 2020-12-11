@@ -84,13 +84,12 @@ public final class PokemonHelper {
 	// Determines the probability of this value being a perfect stat
 	public static BigDecimal perfect( int target){
 		if( MIN_IV_VALUE <= target && target <= MAX_IV_VALUE){
-			BigDecimal result = (target == MAX_IV_VALUE) ? new BigDecimal("1") : new BigDecimal("0");
-			return result;
+			return (target == MAX_IV_VALUE) ? new BigDecimal("1") : new BigDecimal("0");
 		}
 		else{
 			BigDecimal result = new BigDecimal("1");
-			result = result.divide( new BigDecimal( ( MAX_IV_VALUE + 1) - MIN_IV_VALUE));
 			// numerator divided by the denominator
+			result = result.divide( new BigDecimal( ( MAX_IV_VALUE + 1) - MIN_IV_VALUE));
 			return result;
 		}
 	}
@@ -102,14 +101,13 @@ public final class PokemonHelper {
 		}
 		// If value is within the accept parameters then we can compare directly
 		if( MIN_IV_VALUE <= target && target <= MAX_IV_VALUE){
-			BigDecimal result = ( target >= source) ? new BigDecimal("1") : new BigDecimal("0");
-			return result;
+			return (target >= source) ? new BigDecimal("1") : new BigDecimal("0");
 		}
 		// Determine the probability of being inclusively stronger
 		else{
 			BigDecimal result = new BigDecimal( (MAX_IV_VALUE + 1) - source);
-			result = result.divide( new BigDecimal( ( MAX_IV_VALUE + 1) - MIN_IV_VALUE));
 			// numerator divided by the denominator
+			result = result.divide( new BigDecimal( ( MAX_IV_VALUE + 1) - MIN_IV_VALUE));
 			return result;
 		}
 	}
@@ -121,12 +119,12 @@ public final class PokemonHelper {
 		}
 		// If value is within the accept parameters then we can compare directly
 		if( MIN_IV_VALUE <= target && target <= MAX_IV_VALUE){
-			BigDecimal result = ( target > source) ? new BigDecimal("1") : new BigDecimal("0");
-			return result;
+			return (target > source) ? new BigDecimal("1") : new BigDecimal("0");
 		}
 		// Determine the probability of being exclusively stronger
 		else{
 			BigDecimal result = new BigDecimal( MAX_IV_VALUE - source);
+			// numerator divided by the denominator
 			result = result.divide( new BigDecimal( ( MAX_IV_VALUE + 1) - MIN_IV_VALUE));
 			return result;
 		}
@@ -139,12 +137,12 @@ public final class PokemonHelper {
 		}
 		// If value is within the accept parameters then we can compare directly
 		if( MIN_IV_VALUE <= target && target <= MAX_IV_VALUE){
-			BigDecimal result = ( target <= source) ? new BigDecimal("1") : new BigDecimal("0");
-			return result;
+			return (target <= source) ? new BigDecimal("1") : new BigDecimal("0");
 		}
 		// Determine the probability of being inclusively weaker
 		else{
 			BigDecimal result = new BigDecimal( (source + 1) - MIN_IV_VALUE);
+			// numerator divided by the denominator
 			result = result.divide( new BigDecimal( ( MAX_IV_VALUE + 1) - MIN_IV_VALUE));
 			return result;
 		}
@@ -157,12 +155,12 @@ public final class PokemonHelper {
 		}
 		// If value is within the accept parameters then we can compare directly
 		if( MIN_IV_VALUE <= target && target <= MAX_IV_VALUE){
-			BigDecimal result = ( target < source) ? new BigDecimal("1") : new BigDecimal("0");
-			return result;
+			return (target < source) ? new BigDecimal("1") : new BigDecimal("0");
 		}
 		// Determine the probability of being inclusively weaker
 		else{
 			BigDecimal result = new BigDecimal( source - MIN_IV_VALUE);
+			// numerator divided by the denominator
 			result = result.divide( new BigDecimal( ( MAX_IV_VALUE + 1) - MIN_IV_VALUE));
 			return result;
 		}
