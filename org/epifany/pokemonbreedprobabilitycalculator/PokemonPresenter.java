@@ -4,6 +4,7 @@
 
 package org.epifany.pokemonbreedprobabilitycalculator;
 
+import java.text.NumberFormat;
 import org.epifany.pokemonbreedprobabilitycalculator.model.basic.Fraction;
 import org.epifany.pokemonbreedprobabilitycalculator.model.basic.SWIEManager;
 import org.epifany.pokemonbreedprobabilitycalculator.gui.*;
@@ -179,43 +180,41 @@ public class PokemonPresenter {
 			PokemonProbManager probManager = manager.getProbManager();
 			probManager.updateProbabilities();
 			PokemonSWABManager swab = probManager.getSWABAt( probManager.getCurrentKey());
+			// For A
+			updateFlagStateProbabilityDetail( view.getStrongWeakA(), swab.getManagerA());
+			// For B
+			updateFlagStateProbabilityDetail( view.getStrongWeakB(), swab.getManagerB());
+			// For AB
+			updateFlagStateProbabilityDetail( view.getStrongWeakAB(), swab.getManagerAB());
 			
-			StrongWeakContainer swContainer = view.getStrongWeakA();
-			SWIEManager swie = swab.getManagerA();
-			Fraction fraction = swie.getStrongInclusive();
-			swContainer.setStrongInclusiveText( fraction.getNumerator() + " / " + fraction.getDenominator());
-			fraction = swie.getStrongExclusive();
-			swContainer.setStrongExclusiveText( fraction.getNumerator() + " / " + fraction.getDenominator());
-			fraction = swie.getWeakInclusive();
-			swContainer.setWeakInclusiveText( fraction.getNumerator() + " / " + fraction.getDenominator());
-			fraction = swie.getWeakExclusive();
-			swContainer.setWeakExclusiveText( fraction.getNumerator() + " / " + fraction.getDenominator());
-			
-			swContainer = view.getStrongWeakB();
-			swie = swab.getManagerB();
-			fraction = swie.getStrongInclusive();
-			swContainer.setStrongInclusiveText( fraction.getNumerator() + " / " + fraction.getDenominator());
-			fraction = swie.getStrongExclusive();
-			swContainer.setStrongExclusiveText( fraction.getNumerator() + " / " + fraction.getDenominator());
-			fraction = swie.getWeakInclusive();
-			swContainer.setWeakInclusiveText( fraction.getNumerator() + " / " + fraction.getDenominator());
-			fraction = swie.getWeakExclusive();
-			swContainer.setWeakExclusiveText( fraction.getNumerator() + " / " + fraction.getDenominator());
-
-			swContainer = view.getStrongWeakAB();
-			swie = swab.getManagerAB();
-			fraction = swie.getStrongInclusive();
-			swContainer.setStrongInclusiveText( fraction.getNumerator() + " / " + fraction.getDenominator());
-			fraction = swie.getStrongExclusive();
-			swContainer.setStrongExclusiveText( fraction.getNumerator() + " / " + fraction.getDenominator());
-			fraction = swie.getWeakInclusive();
-			swContainer.setWeakInclusiveText( fraction.getNumerator() + " / " + fraction.getDenominator());
-			fraction = swie.getWeakExclusive();
-			swContainer.setWeakExclusiveText( fraction.getNumerator() + " / " + fraction.getDenominator());
-
-			fraction = swab.getManagerPerfect();
-			view.getStrongWeakPerfect().setText( fraction.getNumerator() + " / " + fraction.getDenominator());
+			Fraction fraction = swab.getManagerPerfect();
+			String temp =
+				NumberFormat.getInstance().format(fraction.getNumerator()) + " / " +
+				NumberFormat.getInstance().format(fraction.getDenominator());
+			view.getStrongWeakPerfect().setText( temp);
 		}
+	}
+	
+	// Method for convenience
+	private void updateFlagStateProbabilityDetail( StrongWeakContainer swContainer, SWIEManager swie){
+		// For adding commas to large numbers
+		NumberFormat nf = NumberFormat.getInstance();
+		// Inclusively stronger
+		Fraction fraction = swie.getStrongInclusive();
+		String temp = nf.format(fraction.getNumerator()) + " / " + nf.format(fraction.getDenominator());
+		swContainer.setStrongInclusiveText( temp);
+		// Exclusively stronger
+		fraction = swie.getStrongExclusive();
+		temp = nf.format(fraction.getNumerator()) + " / " + nf.format(fraction.getDenominator());
+		swContainer.setStrongExclusiveText( temp);
+		// Inclusively weaker
+		fraction = swie.getWeakInclusive();
+		temp = nf.format(fraction.getNumerator()) + " / " + nf.format(fraction.getDenominator());
+		swContainer.setWeakInclusiveText( temp);
+		// Exclusively weaker
+		fraction = swie.getWeakExclusive();
+		temp = nf.format(fraction.getNumerator()) + " / " + nf.format(fraction.getDenominator());
+		swContainer.setWeakExclusiveText( temp);
 	}
 	
 	// This method is called whenever a radiobutton state is changed
@@ -300,7 +299,9 @@ public class PokemonPresenter {
 		}
 	}
 
-	public void updateRBStateKey(){	manager.getProbManager2().updateCurrentKey();	}
+	public void updateRBStateKey(){
+		manager.getProbManager2().updateCurrentKey();
+	}
 	
 	// Called whenever a radio button state is changed, or when calculate is done
 	public void updateRBStateProbability(){
@@ -308,7 +309,9 @@ public class PokemonPresenter {
 			PokemonProbManager2 probManager2 = manager.getProbManager2();
 			probManager2.updateProbabilities();
 			Fraction perfect = probManager2.getFractionAt( probManager2.getCurrentKey());
-			view.getRBLabel().setText( perfect.getNumerator() + " / " + perfect.getDenominator());
+			view.getRBLabel().setText(
+				NumberFormat.getInstance().format(perfect.getNumerator()) + " / " +
+				NumberFormat.getInstance().format(perfect.getDenominator()));
 		}
 	}
 }
