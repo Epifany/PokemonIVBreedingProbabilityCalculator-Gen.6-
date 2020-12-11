@@ -180,11 +180,9 @@ public class PokemonPresenter {
 			PokemonProbManager probManager = manager.getProbManager();
 			probManager.updateProbabilities();
 			PokemonSWABManager swab = probManager.getSWABAt( probManager.getCurrentKey());
-			// For A
+			// For A, B, then AB
 			updateFlagStateProbabilityDetail( view.getStrongWeakA(), swab.getManagerA());
-			// For B
 			updateFlagStateProbabilityDetail( view.getStrongWeakB(), swab.getManagerB());
-			// For AB
 			updateFlagStateProbabilityDetail( view.getStrongWeakAB(), swab.getManagerAB());
 			
 			Fraction fraction = swab.getManagerPerfect();
